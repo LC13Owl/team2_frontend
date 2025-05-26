@@ -1,0 +1,11 @@
+.PostList .menu_bar {
+  margin: 20px 0px;
+  display: flex;
+}
+
+.PostList .menu_bar button {
+  flex: 1;
+  color: white;
+  border: 1px solid rgb(255, 186, 83);
+  background-color: rgb(255, 186, 83);
+}

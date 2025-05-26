@@ -1,8 +1,8 @@
-import { useReducer, useRef, createContext } from "react";
+import { useReducer, useState, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Newpost from "./pages/Newpost";
-import Edit from "./pages/Edit"
+import Edit from "./pages/Edit";
 import Post from "./pages/Post";
 import Notfound from "./pages/Notfound";
 
@@ -26,48 +26,49 @@ const mockData = [
 ];
 
 function reducer(state, action) {
-  switch(action.type) {
+  switch (action.type) {
     case "CREATE":
       return [action.data, ...state];
     case "UPDATE":
-      return state.map((item) => 
-        String(item.id) === String(action.data.id) 
-        ? action.data
-        : item
+      return state.map((item) =>
+        String(item.id) === String(action.data.id) ? action.data : item
       );
     case "DELETE":
-      return state.filter(
-        (item) => String(item.id) !== String(action.id)
-      );
+      return state.filter((item) => String(item.id) !== String(action.id));
     default:
       return state;
   }
 }
 
-const PostStateContext = createContext();
-const PostDispatchContext = createContext();
+export const PostStateContext = createContext();
+export const PostDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
-  const idRef = useRef(3)
+  const [nextId, setNextId] = useState(3);
 
   // 새로운 게시글 추가
-  const onCreate = (createdDate, id, title, content) => {
+  const onCreate = (title, content) => {
+    const createdDate = Date.now();
+    const newId = nextId;
+
     dispatch({
-      type:"CREATE",
+      type: "CREATE",
       data: {
-        id: idRef.current++,
+        id: newId,
         createdDate,
         title,
         content,
       },
     });
+
+    setNextId(nextId + 1);
   };
 
   // 기존 게시글 수정
   const onUpdate = (createdDate, id, title, content) => {
     dispatch({
-      type:"UPDATE",
+      type: "UPDATE",
       data: {
         id,
         createdDate,
@@ -108,4 +109,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

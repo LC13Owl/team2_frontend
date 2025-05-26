@@ -1,0 +1,39 @@
+.Editor > section > h4 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.Editor > section.date_section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Editor > hr {
+  border: 1px solid rgb(174, 174, 174);
+}
+
+.Editor > section > input,
+textarea {
+  background-color: rgb(236, 236, 236);
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+.Editor > section.title_section > textarea {
+  width: 100%;
+  height: 52px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.Editor > section.content_section > textarea {
+  margin-top: 5px;
+  padding: 20px;
+  width: 100%;
+  height: calc(100vh - 250px);
+  resize: vertical;
+  box-sizing: border-box;
+}

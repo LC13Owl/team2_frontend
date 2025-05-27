@@ -3,10 +3,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import Viewer from "../components/Viewer";
-import { PostStateContext } from "../App";
+import { PostDispatchContext, PostStateContext } from "../App";
 
 const Post = () => {
   const data = useContext(PostStateContext);
+  const { onUpdateLike } = useContext(PostDispatchContext);
   const { id } = useParams();
   const nav = useNavigate();
 
@@ -30,9 +31,20 @@ const Post = () => {
       <Header
         title={new Date(curPostItem.createdDate).toLocaleDateString()}
         leftchild={<Button onClick={() => nav(-1)} text={"<"} />}
-        rightchild={<Button onClick={() => nav(`/edit/${id}`)} text={"수정"} />}
+        rightchild={
+          <Button
+            className="edit-button"
+            onClick={() => nav(`/edit/${id}`)}
+            text={"수정"}
+          />
+        }
       />
-      <Viewer title={curPostItem.title} content={curPostItem.content} />
+      <Viewer
+        title={curPostItem.title}
+        content={curPostItem.content}
+        likeCount={curPostItem.likeCount || 0}
+        onLike={() => onUpdateLike(curPostItem.id)}
+      />
     </div>
   );
 };

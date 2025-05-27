@@ -38,3 +38,9 @@
   font-weight: 400;
   line-height: 2;
 }
+
+.Viewer .like_section {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

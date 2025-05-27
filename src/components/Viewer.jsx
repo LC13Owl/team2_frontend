@@ -1,6 +1,7 @@
 import "./Viewer.css";
+import Like from "./Like";
 
-const Viewer = ({ title, content }) => {
+const Viewer = ({ title, content, likeCount, onLike }) => {
   return (
     <div className="Viewer">
       <section className="title_section">
@@ -14,7 +15,9 @@ const Viewer = ({ title, content }) => {
           <p>{content}</p>
         </div>
       </section>
-      <section className="comment_section"></section>
+      <div className="like_section">
+        <Like count={likeCount} onClick={onLike} />
+      </div>
     </div>
   );
 };

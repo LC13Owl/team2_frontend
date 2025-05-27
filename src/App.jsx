@@ -35,6 +35,12 @@ function reducer(state, action) {
       );
     case "DELETE":
       return state.filter((item) => String(item.id) !== String(action.id));
+    case "LIKE":
+      return state.map((item) =>
+        item.id === action.id
+          ? { ...item, likeCount: (item.likeCount || 0) + 1 }
+          : item
+      );
     default:
       return state;
   }
@@ -87,6 +93,13 @@ function App() {
     });
   };
 
+  const onUpdateLike = (id) => {
+    dispatch({
+      type: "LIKE",
+      id,
+    });
+  };
+
   return (
     <>
       <PostStateContext.Provider value={data}>
@@ -95,6 +108,7 @@ function App() {
             onCreate,
             onUpdate,
             onDelete,
+            onUpdateLike,
           }}
         >
           <Routes>

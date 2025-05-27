@@ -5,14 +5,16 @@ import { useNavigate } from "react-router-dom";
 
 const PostItem = ({ id, title, content }) => {
   const nav = useNavigate();
+  const preview = content.length > 25 ? content.slice(0, 25) + "..." : content;
+
   return (
     <div className="PostItem">
-      <div onClick={() => nav("/post/${id}")} className="img_section">
+      <div onClick={() => nav(`/post/${id}`)} className="img_section">
         <img src={tiger} alt="호랑이" />
       </div>
-      <div onClick={() => nav("/post/${id}")} className="info_section">
+      <div onClick={() => nav(`/post/${id}`)} className="info_section">
         <div className="title">{title}</div>
-        <div className="content">{content}</div>
+        <div className="content">{preview}</div>
       </div>
       <div className="pin_section">
         <button className="pin_button">

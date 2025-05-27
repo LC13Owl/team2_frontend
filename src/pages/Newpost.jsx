@@ -8,22 +8,21 @@ import { PostDispatchContext } from "../App";
 const Newpost = () => {
   const { onCreate } = useContext(PostDispatchContext);
   const nav = useNavigate();
+
   const [input, setInput] = useState({
     createdDate: new Date(),
     title: "",
     content: "",
   });
-  const onSubmitButtonClick = () => {
+
+  const onSubmit = () => {
     if (!input.title.trim() || !input.content.trim()) {
       alert("제목과 내용을 입력해주세요.");
       return;
     }
 
-    onSubmit(input);
-    nav("/", { replace: true });
-  };
-  const onSubmit = (input) => {
     onCreate(input.title, input.content);
+    nav(`/`, { replace: true });
   };
 
   return (
@@ -35,7 +34,7 @@ const Newpost = () => {
           <Button
             text={"완료"}
             className="complete-button"
-            onClick={onSubmitButtonClick}
+            onClick={onSubmit}
           />
         }
       />

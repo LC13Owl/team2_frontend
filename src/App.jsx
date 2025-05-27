@@ -66,20 +66,21 @@ function App() {
   };
 
   // 기존 게시글 수정
-  const onUpdate = (createdDate, id, title, content) => {
+  const onUpdate = (createdDate, id, newTitle, newContent) => {
     dispatch({
       type: "UPDATE",
       data: {
         id,
         createdDate,
-        title,
-        content,
+        title: newTitle,
+        content: newContent,
       },
     });
   };
 
   // 기존 게시글 삭제
   const onDelete = (id) => {
+    console.log("onDelete 실행됨 id: ", id);
     dispatch({
       type: "DELETE",
       id,

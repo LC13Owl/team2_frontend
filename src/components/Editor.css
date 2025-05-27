@@ -31,9 +31,10 @@ textarea {
 
 .Editor > section.content_section > textarea {
   margin-top: 5px;
+  margin-bottom: 10px;
   padding: 20px;
   width: 100%;
-  height: calc(100vh - 250px);
+  height: calc(100vh - 320px);
   resize: vertical;
   box-sizing: border-box;
 }

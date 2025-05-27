@@ -9,12 +9,20 @@
   cursor: pointer;
 }
 
-
 .Button.complete-button {
   border: 2px solid rgb(255, 186, 83);
 }
 
 .Button.complete-button:hover {
-    background-color: rgb(255, 186, 83);
-    color: white;
+  background-color: rgb(255, 186, 83);
+  color: white;
+}
+
+.Button.delete-button {
+  border: 2px solid rgb(255, 98, 98);
+}
+
+.Button.delete-button:hover {
+  background-color: rgb(255, 98, 98);
+  color: white;
 }

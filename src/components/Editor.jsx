@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Editor.css";
 
 const getStringedDate = (targetDate) => {
@@ -15,19 +17,23 @@ const getStringedDate = (targetDate) => {
   return `${year}-${month}-${date}`;
 };
 
-const Editor = ({ input, setInput }) => {
-  const onChangeInput = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-
-    if (name === "createdDate") {
-      value = new Date(value);
+const Editor = ({ input, setInput, initData }) => {
+  useEffect(() => {
+    if (initData) {
+      setInput({
+        ...initData,
+        createdDate: new Date(Number(initData.createdDate)),
+      });
     }
+  }, [initData, setInput]);
 
-    setInput({
-      ...input,
-      [name]: value,
-    });
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+
+    setInput((prev) => ({
+      ...prev,
+      [name]: name === "createdDate" ? new Date(value) : value,
+    }));
   };
 
   return (
